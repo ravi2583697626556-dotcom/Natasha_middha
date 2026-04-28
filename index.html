@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>✨ Happy Birthday Natasha ✨</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Dancing+Script:wght@400;700&family=Italiana&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+  <!-- ═══ LOADER ═══ -->
+  <div id="loader">
+    <div class="loader-name">Natasha</div>
+    <div class="loader-sub">preparing something magical…</div>
+    <div class="loader-bar-wrap">
+      <div class="loader-bar" id="lbar"></div>
+    </div>
+  </div>
+
+  <!-- ═══ CURSOR ═══ -->
+  <div id="cur"></div>
+  <canvas id="trailCanvas"></canvas>
+
+  <!-- ═══ BACKGROUND LAYERS ═══ -->
+  <canvas id="starfield"></canvas>
+  <canvas id="confetti-canvas"></canvas>
+  <div class="aurora"></div>
+  <div class="noise"></div>
+
+  <!-- ═══ LIGHTBOX ═══ -->
+  <div id="lb">
+    <span class="lb-x" onclick="closeLB()">✕</span>
+    <img id="lbImg" src="" alt=""/>
+    <div class="lb-arrows">
+      <button class="lb-arrow" onclick="navLB(-1)">← Prev</button>
+      <button class="lb-arrow" onclick="navLB(1)">Next →</button>
+    </div>
+    <div class="lb-counter" id="lbCounter"></div>
+  </div>
+
+  <!-- ═══════════════════════════════════════
+       HERO
+  ═══════════════════════════════════════ -->
+  <section id="hero">
+    <div class="hero-bg-img"></div>
+    <div class="crown">👑</div>
+    <div class="hero-eyebrow">✦ &nbsp; Today the universe celebrates &nbsp; ✦</div>
+    <div class="hero-name-wrap">
+      <h1 class="hero-name" id="heroName"></h1>
+    </div>
+    <p class="hero-tagline">Miss Rajasthan '25 &nbsp;·&nbsp; Artist &nbsp;·&nbsp; Dancer &nbsp;·&nbsp; Forever Star</p>
+    <div class="hero-ring">
+      <svg class="date-ring-svg" width="200" height="200" viewBox="0 0 200 200">
+        <defs>
+          <path id="cp" d="M 100,100 m -75,0 a 75,75 0 1,1 150,0 a 75,75 0 1,1 -150,0"/>
+        </defs>
+        <circle cx="100" cy="100" r="75"  fill="none" stroke="rgba(240,192,96,.25)" stroke-width="1"/>
+        <circle cx="100" cy="100" r="86"  fill="none" stroke="rgba(255,107,138,.1)" stroke-width="1" stroke-dasharray="4 8"/>
+        <text font-family="Cormorant Garamond,serif" font-size="12.5" fill="rgba(240,192,96,.65)" letter-spacing="4">
+          <textPath href="#cp">✦ HAPPY BIRTHDAY ✦ HAPPY BIRTHDAY ✦ HAPPY BIRTHDAY ✦</textPath>
+        </text>
+      </svg>
+      <div class="date-ring-center">
+        🎂<br/>
+        <span style="font-size:.85rem;color:rgba(245,230,200,.5);font-family:'Cormorant Garamond',serif;letter-spacing:.1em">born to shine</span>
+      </div>
+    </div>
+    <div class="scroll-hint">
+      <span>scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       POLAROID STRIP
+  ═══════════════════════════════════════ -->
+  <section id="strip">
+    <div style="text-align:center;padding:0 2rem 2rem" class="reveal">
+      <div class="section-label">A life in frames</div>
+      <h2 class="section-title">Her Beautiful Story</h2>
+    </div>
+    <div class="strip-track" id="strip1"></div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       MORPHING QUOTES
+  ═══════════════════════════════════════ -->
+  <section id="quotes">
+    <div class="quote-bg"></div>
+    <div class="section-label reveal">Words for You</div>
+    <h2 class="section-title reveal">From the Heart</h2>
+    <div class="quote-text reveal"   id="quoteText"></div>
+    <div class="quote-author reveal" id="quoteAuthor"></div>
+    <div class="quote-dots reveal"   id="quoteDots"></div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       3D CAROUSEL
+  ═══════════════════════════════════════ -->
+  <section id="carousel-section">
+    <div class="section-label reveal">Gallery — 3D Edition</div>
+    <h2 class="section-title reveal">Seen From Every Angle</h2>
+    <div class="carousel-3d">
+      <div class="carousel-inner" id="carousel3d"></div>
+    </div>
+    <p style="text-align:center;font-style:italic;color:rgba(245,230,200,.35);font-size:.9rem;position:relative;z-index:10">
+      Hover to pause &nbsp;·&nbsp; Click to open
+    </p>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       WISHING WALL
+  ═══════════════════════════════════════ -->
+  <section id="wishes">
+    <div class="section-label reveal">Wishes</div>
+    <h2 class="section-title reveal">The Wishing Wall ✨</h2>
+    <div class="wishes-grid reveal" id="wishWall"></div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       FULL GALLERY
+  ═══════════════════════════════════════ -->
+  <section id="gallery-sec">
+    <div class="section-label reveal">Every Frame</div>
+    <h2 class="section-title reveal">The Full Collection</h2>
+    <div class="gallery-grid" id="mainGallery"></div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       BLOW THE CANDLES
+  ═══════════════════════════════════════ -->
+  <section id="candle-sec">
+    <div class="section-label reveal">Make a Wish</div>
+    <h2 class="section-title reveal">Blow the Candles 🕯️</h2>
+    <div class="candles-row reveal" id="candlesRow"></div>
+    <br/>
+    <button class="blow-btn reveal" id="blowBtn" onclick="blowCandles()">💨 Blow!</button>
+    <p class="blow-msg" id="blowMsg">
+      May every wish you hold in your heart come true today and always. 🌟
+    </p>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       FINALE
+  ═══════════════════════════════════════ -->
+  <section id="finale">
+    <div class="finale-glow"></div>
+    <h2 class="finale-title reveal">Happy Birthday,<br/>Natasha! 🎂</h2>
+    <p class="finale-msg reveal">
+      You are the kind of person who makes the world more beautiful simply by existing in it.
+      May this year bring you everything your heart desires — more crowns, more applause,
+      more dance, more love, and endless starlight. Keep shining, darling. 🌹
+    </p>
+    <div class="finale-sig reveal">With love &amp; admiration 💕</div>
+  </section>
+
+  <script src="main.js"></script>
+</body>
+</html>
